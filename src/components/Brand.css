@@ -1,0 +1,29 @@
+.brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  color: var(--ink);
+}
+
+.brand__logo {
+  display: block;
+  width: 108px;
+  height: auto;
+  border: 1px solid rgba(23, 24, 23, 0.07);
+  background: var(--white);
+}
+
+.brand--light {
+  color: var(--white);
+}
+
+.brand--light .brand__logo {
+  width: 132px;
+}
+
+@media (max-width: 700px) {
+
+  .brand__logo {
+    width: 90px;
+  }
+}

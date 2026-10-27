@@ -1,0 +1,153 @@
+.site-footer {
+  background: #191a19;
+  color: #f5f5f1;
+}
+
+.footer-main {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.65fr 0.8fr 1.2fr;
+  gap: 80px;
+  padding-top: 60px;
+  padding-bottom: 57px;
+}
+
+.footer-brand > p {
+  max-width: 290px;
+  margin: 21px 0 18px;
+  color: #aaa9a2;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 8px;
+}
+
+.footer-socials a {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #454642;
+  color: #e2e2dc;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.footer-socials a:hover {
+  border-color: var(--brand-green);
+  background: var(--brand-green);
+}
+
+.footer-column {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.footer-column h2 {
+  margin: 3px 0 9px;
+  color: var(--white);
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.footer-column > a,
+.footer-column > span {
+  color: #aaa9a2;
+  font-size: 12px;
+  transition: color 160ms ease;
+}
+
+.footer-column > a:hover {
+  color: var(--brand-blue);
+}
+
+.footer-contact > span {
+  max-width: 245px;
+  line-height: 1.7;
+}
+
+.back-to-top {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  transform: rotate(180deg);
+  place-items: center;
+  border: 1px solid #454642;
+  color: var(--white);
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.back-to-top:hover {
+  border-color: var(--brand-green);
+  background: var(--brand-green);
+}
+
+.footer-bottom {
+  border-top: 1px solid #383936;
+}
+
+.footer-bottom__inner {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: #85867f;
+  font-size: 11px;
+}
+
+@media (max-width: 1000px) {
+
+  .footer-main {
+    gap: 45px;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 22px;
+    padding-top: 45px;
+    padding-bottom: 42px;
+  }
+
+  .footer-brand {
+    grid-column: span 2;
+  }
+
+  .footer-brand > p {
+    max-width: 350px;
+  }
+
+  .footer-contact {
+    grid-column: span 2;
+    max-width: 340px;
+    padding-right: 40px;
+  }
+
+  .back-to-top {
+    top: auto;
+    right: 0;
+    bottom: 42px;
+  }
+
+  .footer-bottom__inner {
+    min-height: 60px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    font-size: 10px;
+  }
+}
