@@ -4,8 +4,10 @@ import './Footer.css'
 
 const footerLinks = [
   { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
+  { label: 'Specialization', href: '#services' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Client stories', href: '#client-stories' },
+  { label: 'News & articles', href: '#articles' },
 ]
 
 function Footer() {

@@ -4,15 +4,18 @@ import {
   ArrowRight,
   ArrowUpRight,
   Award,
+  BadgeCheck,
   Building2,
-  Check,
   ClipboardCheck,
   ChevronLeft,
   ChevronRight,
   Clock3,
   HardHat,
+  Leaf,
+  Lightbulb,
   Pause,
   Play,
+  Quote,
   ShieldCheck,
   Sparkles,
   UsersRound,
@@ -24,6 +27,10 @@ const photos = {
   heroTwo: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=88',
   heroThree: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=88',
   about: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=85',
+  aboutGreen: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1000&q=85',
+  aboutDetail: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1000&q=85',
+  aboutTower: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=85',
+  aboutOffice: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=85',
   homes: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85',
   commercial: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85',
   renovation: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85',
@@ -152,6 +159,29 @@ const reasons = [
   },
 ]
 
+const aboutPrinciples = [
+  {
+    icon: BadgeCheck,
+    title: 'Quality',
+    description: 'Commitment to delivering the highest standards in every project.',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Innovation',
+    description: 'Embracing modern technologies to build better and faster.',
+  },
+  {
+    icon: Leaf,
+    title: 'Sustainability',
+    description: 'Thoughtful material and design choices that consider long-term impact.',
+  },
+  {
+    icon: Clock3,
+    title: 'Reliability',
+    description: 'Clear planning and communication to support dependable delivery.',
+  },
+]
+
 function Stat({ value, suffix, label }) {
   const ref = useRef(null)
   const [count, setCount] = useState(0)
@@ -249,7 +279,7 @@ function Hero() {
         ))}
       </div>
       <div className="hero__inner page-wrap">
-        <div className="hero__content" key={activeSlide} aria-live="polite" aria-atomic="true">
+        <div className="hero__content" key={`hero-copy-${activeSlide}`} aria-live="polite" aria-atomic="true">
           <Eyebrow>{heroSlides[activeSlide].eyebrow}</Eyebrow>
           <h1>
             {heroSlides[activeSlide].heading}
@@ -266,7 +296,7 @@ function Hero() {
             </a>
           </div>
         </div>
-        <p className="hero__photo-label" aria-live="polite">
+        <p className="hero__photo-label" key={`hero-label-${activeSlide}`} aria-live="polite">
           {heroSlides[activeSlide].caption}
         </p>
         <a className="hero__scroll" href="#highlights" aria-label="Scroll to company highlights">
@@ -298,7 +328,7 @@ function Hero() {
             <ChevronLeft size={17} aria-hidden="true" />
           </button>
           <span className="hero__index" aria-hidden="true">
-            <span>{String(activeSlide + 1).padStart(2, '0')}</span> / {String(heroSlides.length).padStart(2, '0')}
+            <span key={`slide-index-${activeSlide}`}>{String(activeSlide + 1).padStart(2, '0')}</span> / {String(heroSlides.length).padStart(2, '0')}
           </span>
           <button
             className="hero__control"
@@ -337,41 +367,46 @@ function About() {
   return (
     <section className="section about-section" id="about">
       <div className="about-layout page-wrap">
-        <div className="about-visual">
-          <img
-            src={photos.about}
-            alt="Construction professionals at work on a modern building"
-            loading="lazy"
-          />
-          <div className="about-badge">
-            <span className="about-badge__number">15</span>
-            <span>years of<br />building trust</span>
-          </div>
-          <div className="about-caption">
-            <span>BUILT WITH INTENTION</span>
-            <span>01 — 03</span>
+        <div className="about-copy">
+          <Eyebrow>About Tensor</Eyebrow>
+          <h2>Crafting dreams<br />from the <span>ground.</span></h2>
+          <div className="about-principles">
+            {aboutPrinciples.map(({ icon: Icon, title, description }) => (
+              <article className="about-principle" key={title}>
+                <Icon size={28} strokeWidth={1.35} aria-hidden="true" />
+                <div>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
-        <div className="about-copy">
-          <Eyebrow>Who we are</Eyebrow>
-          <h2>Building trust.<br />Creating <span>landmarks.</span></h2>
-          <p className="about-copy__lead">
-            Better buildings begin with better partnerships.
-          </p>
-          <p className="body-copy">
-            At Tensor, we bring people, craft, and clear thinking together to build places
-            that make a difference. From the first conversation to the finishing details,
-            we’re committed to quality, safety, and getting every project over the line
-            exactly as promised.
-          </p>
-          <div className="about-values">
-            <span><Check size={14} /> Quality without compromise</span>
-            <span><Check size={14} /> Safety in every decision</span>
-            <span><Check size={14} /> Delivery you can depend on</span>
-          </div>
-          <a className="text-link" href="#services">
-            Discover more <ArrowUpRight size={16} />
-          </a>
+        <div className="about-visual" aria-label="Tensor architecture and construction imagery">
+          <img
+            className="about-visual__image about-visual__image--garden"
+            src={photos.aboutGreen}
+            alt="Modern architecture framed by greenery"
+            loading="lazy"
+          />
+          <img
+            className="about-visual__image about-visual__image--detail"
+            src={photos.aboutDetail}
+            alt="Contemporary architectural facade detail"
+            loading="lazy"
+          />
+          <img
+            className="about-visual__image about-visual__image--tower"
+            src={photos.aboutTower}
+            alt="Modern high-rise building"
+            loading="lazy"
+          />
+          <img
+            className="about-visual__image about-visual__image--office"
+            src={photos.aboutOffice}
+            alt="Contemporary office interior"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
@@ -384,8 +419,8 @@ function Services() {
       <div className="page-wrap">
         <div className="section-heading">
           <div>
-            <Eyebrow>What we do</Eyebrow>
-            <h2>Built around <span>your vision.</span></h2>
+            <Eyebrow>Construction, carefully considered</Eyebrow>
+            <h2>Our <span>specialization.</span></h2>
           </div>
           <p>From a single room to an entire development, we bring the right people and the right plan to every build.</p>
         </div>
@@ -416,7 +451,7 @@ function Projects() {
       <div className="page-wrap">
         <div className="section-heading section-heading--projects">
           <div>
-            <Eyebrow>Selected work</Eyebrow>
+            <Eyebrow>Our projects</Eyebrow>
             <h2>Made to <span>make a mark.</span></h2>
           </div>
           <a className="button button--outline-dark" href="#projects">
@@ -441,6 +476,98 @@ function Projects() {
           ))}
         </div>
         <p className="projects-note">Project names and locations shown for demonstration purposes.</p>
+      </div>
+    </section>
+  )
+}
+
+function ClientStories() {
+  return (
+    <section className="section client-stories-section" id="client-stories">
+      <div className="client-stories-layout page-wrap">
+        <div className="client-stories-heading">
+          <Eyebrow>What clients say</Eyebrow>
+          <h2>Good work leaves<br /><span>a lasting impression.</span></h2>
+          <p>
+            We value every client’s experience. We only publish feedback that has been
+            shared with us and approved for use.
+          </p>
+        </div>
+        <div className="client-stories-panel">
+          <Quote size={31} strokeWidth={1.4} aria-hidden="true" />
+          <p className="client-stories-panel__message">
+            Client testimonials will appear here once verified and approved.
+          </p>
+          <p className="client-stories-panel__note">
+            Have you worked with Tensor? We’d be glad to hear about your experience.
+          </p>
+          <a
+            className="text-link"
+            href="mailto:hello@tensorconstruction.com?subject=Feedback%20for%20Tensor"
+          >
+            Share your experience <ArrowUpRight size={16} />
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const articles = [
+  {
+    category: 'PROJECT PLANNING',
+    title: 'A clearer brief before the first site visit',
+    image: photos.management,
+    alt: 'Construction plans being reviewed at a worksite',
+    summary:
+      'Start by gathering your priorities, scope, budget range, and any known site constraints. A shared brief helps the project team ask better questions and identify what needs further investigation.',
+  },
+  {
+    category: 'RENOVATION',
+    title: 'Planning a renovation around the unexpected',
+    image: photos.renovation,
+    alt: 'Bright contemporary interior prepared for renovation',
+    summary:
+      'Existing buildings can reveal surprises once work begins. Allow time to assess the space, agree how changes will be reviewed, and keep decisions and approvals documented as the work progresses.',
+  },
+  {
+    category: 'PROJECT HANDOVER',
+    title: 'The details to review at handover',
+    image: photos.projectTwo,
+    alt: 'Modern commercial building at completion',
+    summary:
+      'A considered handover includes a walkthrough, relevant operation and maintenance information, and a clear record of any outstanding items and their next steps.',
+  },
+]
+
+function NewsArticles() {
+  return (
+    <section className="section articles-section" id="articles">
+      <div className="page-wrap">
+        <div className="section-heading articles-heading">
+          <div>
+            <Eyebrow>News &amp; articles</Eyebrow>
+            <h2>Ideas for a <span>better build.</span></h2>
+          </div>
+          <p>Practical notes on planning, renovation, and the details that shape a successful project.</p>
+        </div>
+        <div className="articles-grid">
+          {articles.map(({ category, title, image, alt, summary }) => (
+            <article className="article-card" key={title}>
+              <div className="article-card__image">
+                <img src={image} alt={alt} loading="lazy" />
+              </div>
+              <div className="article-card__body">
+                <p className="article-card__category">{category}</p>
+                <h3>{title}</h3>
+                <details className="article-card__details">
+                  <summary>Read article <ArrowUpRight size={14} aria-hidden="true" /></summary>
+                  <p>{summary}</p>
+                </details>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -520,10 +647,12 @@ function Home() {
   return (
     <main id="main-content">
       <Hero />
-      <Highlights />
       <About />
+      <Highlights />
       <Services />
       <Projects />
+      <ClientStories />
+      <NewsArticles />
       <WhyTensor />
       <CallToAction />
     </main>

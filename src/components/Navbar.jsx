@@ -5,8 +5,9 @@ import './Navbar.css'
 
 const sectionLinks = [
   { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
+  { label: 'Specialization', href: '#services' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Journal', href: '#articles' },
   { label: 'Contact', href: '#contact' },
 ]
 
