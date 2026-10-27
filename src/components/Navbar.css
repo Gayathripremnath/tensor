@@ -254,4 +254,9 @@
     border-bottom-color: rgba(255, 255, 255, 0.13);
     color: rgba(255, 255, 255, 0.82);
   }
+
+  .primary-nav__link:hover,
+  .primary-nav__link--active {
+    color: var(--brand-green);
+  }
 }

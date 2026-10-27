@@ -8,7 +8,7 @@ function Brand({ light = false }) {
       to="/"
       aria-label="Tensor Construction home"
     >
-      <img className="brand__logo" src="/tensor-logo.svg" alt="" />
+      <img className="brand__logo" src="/tensor-logo-on-dark.svg" alt="" />
     </NavLink>
   )
 }
