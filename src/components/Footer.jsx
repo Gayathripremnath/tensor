@@ -50,9 +50,7 @@ function Footer() {
       </div>
       <div className="footer-bottom">
         <div className="page-wrap footer-bottom__inner">
-          <span>© 2026 Genova Technologies Pvt Ltd. All rights reserved.</span>
-          <span>Designed to build better.</span>
-        </div>
+                 </div>
       </div>
     </footer>
   )
